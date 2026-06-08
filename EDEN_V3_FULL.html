@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EDEN | Building The Future Of Content Creation</title>
+<style>
+:root{--green:#22c55e;--dark:#111827;--muted:#6b7280;--bg:#ffffff;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#fff;color:var(--dark);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:auto;padding:0 24px}
+#loader{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center;z-index:9999}
+#loader img{width:220px}
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #eee;z-index:100}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{height:52px}
+.btn{background:var(--green);color:#fff;text-decoration:none;padding:13px 24px;border-radius:999px;font-weight:bold}
+.hero{padding-top:110px}
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;min-height:92vh}
+.hero h1{font-size:4.3rem;line-height:1.05}
+.hero p{margin:20px 0;color:var(--muted);font-size:1.15rem}
+.hero img{border-radius:28px}
+.section{padding:90px 0}
+.center{text-align:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{padding:28px;border:1px solid #eee;border-radius:24px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.gallery img{height:320px;object-fit:cover;border-radius:24px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.split img{border-radius:24px}
+.join{background:#f8faf8;padding:60px 25px;border-radius:30px;text-align:center}
+.join input{width:min(500px,90%);padding:16px;border:1px solid #ddd;border-radius:14px}
+.join button{padding:16px 24px;background:var(--green);color:#fff;border:none;border-radius:14px;font-weight:bold;cursor:pointer}
+footer{background:#111827;color:#fff;text-align:center;padding:50px 20px}
+.leafL,.leafR,.tree{position:absolute;opacity:.10;pointer-events:none}
+.leafL{left:0;top:700px;width:180px}
+.leafR{right:0;top:1500px;width:180px}
+.tree{right:20px;top:2400px;width:220px}
+@media(max-width:900px){
+.hero-grid,.split{grid-template-columns:1fr}
+.hero h1{font-size:2.8rem}
+}
+</style>
+</head>
+<body>
+
+<div id="loader"><img src="images/eden-logo.png"></div>
+
+<img src="images/leaf-left.png" class="leafL">
+<img src="images/leaf-right.png" class="leafR">
+<img src="images/tree.png" class="tree">
+
+<nav>
+<div class="container nav">
+<img src="images/eden-logo.png" class="logo">
+<a href="#join" class="btn">Join EDEN</a>
+</div>
+</nav>
+
+<section class="hero container">
+<div class="hero-grid">
+<div>
+<h1>Building The Future Of Content Creation</h1>
+<p>EDEN is a creator-first community built for ambitious content creators. Discover opportunities, access resources, connect with like-minded creators and position yourself for future brand partnerships.</p>
+<a href="#join" class="btn">Join The First 500 Creators</a>
+</div>
+<div>
+<img src="images/hero.jpg">
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container center">
+<h2>Why EDEN Exists</h2>
+<p>Many creators grow alone. Opportunities are scattered, resources are difficult to find and meaningful communities are rare. EDEN brings creators together in one ecosystem designed for long-term growth.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2 class="center">Meet The Community</h2><br>
+<div class="gallery">
+<img src="images/creator1.jpg">
+<img src="images/community.jpg">
+<img src="images/community2.jpg">
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2 class="center">What You Get Inside EDEN</h2><br>
+<div class="cards">
+<div class="card"><h3>Brand Opportunities</h3><p>Get positioned for future campaigns and partnerships.</p></div>
+<div class="card"><h3>Creator Resources</h3><p>Tools, systems and resources to improve your workflow.</p></div>
+<div class="card"><h3>Community Access</h3><p>Connect with creators across multiple niches.</p></div>
+<div class="card"><h3>Growth Support</h3><p>Learn strategies that help creators grow sustainably.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container split">
+<div><img src="images/workspace1.jpg"></div>
+<div>
+<h2>Work Smarter</h2>
+<p>Access workflows, systems and resources designed to help creators produce better content and operate more efficiently.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container split">
+<div>
+<h2>Tools & Opportunities</h2>
+<p>Discover useful platforms, creator resources and opportunities that help unlock your next stage of growth.</p>
+</div>
+<div><img src="images/tools.jpg"></div>
+</div>
+</section>
+
+<section class="section">
+<div class="container split">
+<div><img src="images/workspace2.jpg"></div>
+<div>
+<h2>The EDEN Mission</h2>
+<p>Our mission is simple: build an environment where creators can thrive together through community, support, opportunities and meaningful connections.</p>
+</div>
+</div>
+</section>
+
+<section class="section center">
+<div class="container">
+<h2>Only 500 Founding Creator Spots Available</h2>
+<p>We're carefully building the first generation of EDEN creators.</p>
+</div>
+</section>
+
+<section id="join" class="section">
+<div class="container">
+<div class="join">
+<h2>Request Access</h2>
+<p>Enter your email to join the waitlist.</p><br>
+<input type="email" placeholder="Enter your email address">
+<button onclick="joinEden()">Request Access</button>
+<p id="msg" style="margin-top:18px"></p>
+</div>
+</div>
+</section>
+
+<footer>
+<img src="images/eden-logo.png" style="height:60px;margin:0 auto 15px;">
+<p>Building The Future Of Content Creation</p>
+</footer>
+
+<script>
+window.onload=function(){
+setTimeout(()=>{document.getElementById('loader').style.display='none';},1800);
+}
+function joinEden(){
+document.getElementById('msg').innerHTML="Thank you for joining EDEN. Watch your inbox for a welcome email and creator application form.";
+}
+</script>
+
+</body>
+</html>
