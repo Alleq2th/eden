@@ -5,14 +5,27 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>EDEN | Building The Future Of Content Creation</title>
 <style>
-:root{--green:#22c55e;--dark:#111827;--muted:#6b7280;--bg:#ffffff;}
+:root {
+  --green: #22c55e;
+  --dark: #111827;
+  --muted: #6b7280;
+  /* Updated background variable with a soft, faded green gradient */
+  --bg-gradient: linear-gradient(180deg, #f0faf4 0%, #ffffff 100%);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#fff;color:var(--dark);line-height:1.6;overflow-x:hidden}
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg-gradient); /* Applied the faded green gradient here */
+  background-attachment: fixed;   /* Keeps the gradient smooth as you scroll */
+  color: var(--dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 img{max-width:100%;display:block}
 .container{max-width:1200px;margin:auto;padding:0 24px}
 #loader{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center;z-index:9999}
 #loader img{width:220px}
-nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #eee;z-index:100}
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.05);z-index:100}
 .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
 .logo{height:52px}
 .btn{background:var(--green);color:#fff;text-decoration:none;padding:13px 24px;border-radius:999px;font-weight:bold}
@@ -24,12 +37,12 @@ nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.95);backdrop-fi
 .section{padding:90px 0}
 .center{text-align:center}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{padding:28px;border:1px solid #eee;border-radius:24px}
+.card{padding:28px;border:1px solid rgba(0,0,0,0.05);border-radius:24px;background:rgba(255,255,255,0.7);backdrop-filter:blur(4px)}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
 .gallery img{height:320px;object-fit:cover;border-radius:24px}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .split img{border-radius:24px}
-.join{background:#f8faf8;padding:60px 25px;border-radius:30px;text-align:center}
+.join{background:rgba(248,250,248,0.8);backdrop-filter:blur(4px);padding:60px 25px;border-radius:30px;text-align:center;border:1px solid rgba(0,0,0,0.02)}
 .join input{width:min(500px,90%);padding:16px;border:1px solid #ddd;border-radius:14px}
 .join button{padding:16px 24px;background:var(--green);color:#fff;border:none;border-radius:14px;font-weight:bold;cursor:pointer}
 footer{background:#111827;color:#fff;text-align:center;padding:50px 20px}
@@ -160,13 +173,9 @@ footer{background:#111827;color:#fff;text-align:center;padding:50px 20px}
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-// ─────────────────────────────────────────────
-// EMAILJS SETUP — fill in your 3 values below
-// ─────────────────────────────────────────────
 const EMAILJS_PUBLIC_KEY  = "jf6pKxVaqZkK8fHdr";
 const EMAILJS_SERVICE_ID  = "service_4muayq4";
 const EMAILJS_TEMPLATE_ID = "template_2zujl86";
-// ─────────────────────────────────────────────
 
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
@@ -185,7 +194,6 @@ function joinEden() {
   const name  = nameInput.value.trim();
   const email = emailInput.value.trim();
 
-  // Basic validation
   if (!name) {
     msgEl.style.color = '#e53e3e';
     msgEl.innerHTML = 'Please enter your name.';
@@ -197,14 +205,11 @@ function joinEden() {
     return;
   }
 
-  // Disable button while sending
   btn.disabled = true;
   btn.textContent = 'Sending…';
   msgEl.style.color = '#6b7280';
   msgEl.innerHTML = 'Submitting your request…';
 
-  // Send via EmailJS
-  // These variable names must match your EmailJS template exactly
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
     to_name:    name,
     to_email:   email,
