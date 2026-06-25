@@ -142,10 +142,13 @@ footer{background:#111827;color:#fff;text-align:center;padding:50px 20px}
 <div class="container">
 <div class="join">
 <h2>Request Access</h2>
-<p>Enter your email to join the waitlist.</p><br>
-<input type="email" placeholder="Enter your email address">
-<button onclick="joinEden()">Request Access</button>
-<p id="msg" style="margin-top:18px"></p>
+<p>Join the first 500 founding creators. Enter your details below.</p><br>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:100%">
+  <input id="joinName"  type="text"  placeholder="Your name" style="width:min(500px,90%);padding:16px;border:1px solid #ddd;border-radius:14px;font-size:15px;font-family:Arial,sans-serif">
+  <input id="joinEmail" type="email" placeholder="Your email address" style="width:min(500px,90%);padding:16px;border:1px solid #ddd;border-radius:14px;font-size:15px;font-family:Arial,sans-serif">
+  <button id="joinBtn" onclick="joinEden()" style="padding:16px 32px;background:var(--green);color:#fff;border:none;border-radius:14px;font-weight:bold;cursor:pointer;font-size:15px;width:min(500px,90%);font-family:Arial,sans-serif">Request Access</button>
+</div>
+<p id="msg" style="margin-top:18px;font-size:14px"></p>
 </div>
 </div>
 </section>
@@ -155,12 +158,74 @@ footer{background:#111827;color:#fff;text-align:center;padding:50px 20px}
 <p>Building The Future Of Content Creation</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-window.onload=function(){
-setTimeout(()=>{document.getElementById('loader').style.display='none';},1800);
-}
-function joinEden(){
-document.getElementById('msg').innerHTML="Thank you for joining EDEN. Watch your inbox for a welcome email and creator application form.";
+// ─────────────────────────────────────────────
+// EMAILJS SETUP — fill in your 3 values below
+// ─────────────────────────────────────────────
+const EMAILJS_PUBLIC_KEY  = "jf6pKxVaqZkK8fHdr";
+const EMAILJS_SERVICE_ID  = "service_4muayq4";
+const EMAILJS_TEMPLATE_ID = "template_2zujl86";
+// ─────────────────────────────────────────────
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+window.onload = function () {
+  setTimeout(() => {
+    document.getElementById('loader').style.display = 'none';
+  }, 1800);
+};
+
+function joinEden() {
+  const nameInput  = document.getElementById('joinName');
+  const emailInput = document.getElementById('joinEmail');
+  const msgEl      = document.getElementById('msg');
+  const btn        = document.getElementById('joinBtn');
+
+  const name  = nameInput.value.trim();
+  const email = emailInput.value.trim();
+
+  // Basic validation
+  if (!name) {
+    msgEl.style.color = '#e53e3e';
+    msgEl.innerHTML = 'Please enter your name.';
+    return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    msgEl.style.color = '#e53e3e';
+    msgEl.innerHTML = 'Please enter a valid email address.';
+    return;
+  }
+
+  // Disable button while sending
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  msgEl.style.color = '#6b7280';
+  msgEl.innerHTML = 'Submitting your request…';
+
+  // Send via EmailJS
+  // These variable names must match your EmailJS template exactly
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    to_name:    name,
+    to_email:   email,
+    from_name:  'EDEN',
+    reply_to:   'sportsguycollabs@gmail.com',
+  })
+  .then(() => {
+    msgEl.style.color = '#22c55e';
+    msgEl.innerHTML   = '🎉 Welcome to EDEN, ' + name + '! Check your inbox — a welcome message is on its way.';
+    nameInput.value   = '';
+    emailInput.value  = '';
+    btn.textContent   = 'Request Access';
+    btn.disabled      = false;
+  })
+  .catch((err) => {
+    console.error('EmailJS error:', err);
+    msgEl.style.color = '#e53e3e';
+    msgEl.innerHTML   = 'Something went wrong. Please try again or email us directly.';
+    btn.textContent   = 'Request Access';
+    btn.disabled      = false;
+  });
 }
 </script>
 
