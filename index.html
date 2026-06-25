@@ -4,171 +4,207 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>EDEN | Building The Future Of Content Creation</title>
+<!-- Added a premium geometric font to replace default system Arial -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --green: #22c55e;
-  --dark: #111827;
-  --muted: #6b7280;
-  /* Increased color opacity/density by over 35% using richer lime-mint hex values */
+  --green-hover: #16a34a;
+  --dark: #0f172a;
+  --muted: #475569;
+  /* Heavily dominant, rich light mint/lime landscape layout */
   --bg-gradient: linear-gradient(180deg, #a7f3d0 0%, #bbf7d0 40%, #dcfce7 80%, #ffffff 100%);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg-gradient);
   background-attachment: scroll;
   color: var(--dark);
   line-height: 1.6;
   overflow-x: hidden;
 }
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 .container{max-width:1200px;margin:auto;padding:0 24px}
-#loader{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center;z-index:9999}
+
+/* Preloader styles */
+#loader{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center;z-index:9999;transition: opacity 0.4s ease;}
 #loader img{width:220px}
-nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.8);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.08);z-index:100}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
-.logo{height:52px}
-.btn{background:var(--green);color:#fff;text-decoration:none;padding:13px 24px;border-radius:999px;font-weight:bold}
-.hero{padding-top:110px}
-.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;min-height:92vh}
-.hero h1{font-size:4.3rem;line-height:1.05}
-.hero p{margin:20px 0;color:var(--muted);font-size:1.15rem}
-.hero img{border-radius:28px}
-.section{padding:90px 0}
-.center{text-align:center}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{padding:28px;border:1px solid rgba(0,0,0,0.08);border-radius:24px;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);box-shadow: 0 4px 25px rgba(0,0,0,0.03)}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
-.gallery img{height:320px;object-fit:cover;border-radius:24px}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.split img{border-radius:24px}
-.join{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);padding:60px 25px;border-radius:30px;text-align:center;border:1px solid rgba(0,0,0,0.08);box-shadow: 0 12px 35px rgba(0,0,0,0.04)}
-.join input{width:min(500px,90%);padding:16px;border:1px solid #ddd;border-radius:14px;background:#fff}
-.join button{padding:16px 24px;background:var(--green);color:#fff;border:none;border-radius:14px;font-weight:bold;cursor:pointer}
-footer{background:#111827;color:#fff;text-align:center;padding:50px 20px}
-.leafL,.leafR,.tree{position:absolute;opacity:.18;pointer-events:none}
-.leafL{left:0;top:700px;width:180px}
-.leafR{right:0;top:1500px;width:180px}
-.tree{right:20px;top:2400px;width:220px}
-@media(max-width:900px){
-.hero-grid,.split{grid-template-columns:1fr}
-.hero h1{font-size:2.8rem}
+
+/* Elevated Sticky Navigation Bar */
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,23,42,0.08);z-index:100}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.logo{height:44px}
+.btn{background:var(--green);color:#fff;text-decoration:none;padding:12px 28px;border-radius:999px;font-weight:600;transition:all 0.2s ease;box-shadow: 0 4px 12px rgba(34,197,94,0.2)}
+.btn:hover{background:var(--green-hover);transform:translateY(-1px);box-shadow: 0 6px 16px rgba(34,197,94,0.3)}
+
+/* Refactored Hero Section Grid */
+.hero{padding-top:160px;padding-bottom:60px}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;min-height:75vh}
+.hero h1{font-size:3.8rem;font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:var(--dark)}
+.hero p{margin:24px 0 32px;color:var(--muted);font-size:1.2rem;line-height:1.7}
+.hero img{border-radius:28px;box-shadow: 0 20px 40px rgba(15,23,42,0.15)}
+
+/* Dynamic Structuring for Sections */
+.section{padding:100px 0}
+.center{text-align:center;max-width:720px;margin:0 auto}
+.section h2{font-size:2.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px}
+.section p{color:var(--muted);font-size:1.15rem;line-height:1.7}
+
+/* UI Cards Component Grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:40px}
+.card{padding:32px;border:1px solid rgba(15,23,42,0.08);border-radius:24px;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(15,23,42,0.02);transition:transform 0.2s ease}
+.card:hover{transform:translateY(-4px)}
+.card h3{font-size:1.35rem;font-weight:600;margin-bottom:12px}
+.card p{font-size:1rem;color:var(--muted);line-height:1.6}
+
+/* Clean Photo Gallery Grid */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
+.gallery img{width:100%;height:360px;object-fit:cover;border-radius:24px;box-shadow:0 10px 30px rgba(15,23,42,0.05)}
+
+/* Split Section Content Structures */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.split img{border-radius:24px;box-shadow:0 15px 35px rgba(15,23,42,0.08)}
+
+/* High-Conversion Form Section Wrap */
+.join{background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);padding:60px 40px;border-radius:32px;text-align:center;border:1px solid rgba(15,23,42,0.08);box-shadow: 0 20px 50px rgba(15,23,42,0.04);max-width:650px;margin:0 auto}
+.join h2{margin-bottom:12px}
+.join-form{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;margin-top:30px}
+.join input{width:100%;max-width:480px;padding:16px 20px;border:1px solid #cbd5e1;border-radius:16px;font-size:16px;font-family:inherit;transition:all 0.2s ease;outline:none}
+.join input:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(34,197,94,0.15)}
+.join button{width:100%;max-width:480px;padding:16px 32px;background:var(--green);color:#fff;border:none;border-radius:16px;font-weight:600;cursor:pointer;font-size:16px;font-family:inherit;transition:all 0.2s ease;box-shadow: 0 4px 12px rgba(34,197,94,0.15)}
+.join button:hover{background:var(--green-hover);box-shadow: 0 6px 16px rgba(34,197,94,0.25)}
+.msg-box{min-height:24px;margin-top:16px}
+
+/* Structural Layout Background Accents */
+.leafL,.leafR,.tree{position:absolute;opacity:.14;pointer-events:none}
+.leafL{left:0;top:750px;width:180px}
+.leafR{right:0;top:1600px;width:180px}
+.tree{right:20px;top:2500px;width:220px}
+
+/* Footer Section styling */
+footer{background:#0f172a;color:#f8fafc;text-align:center;padding:60px 20px;border-top:1px solid rgba(255,255,255,0.05)}
+footer img{height:48px;margin:0 auto 20px;}
+footer p{color:#94a3b8;font-size:0.95rem}
+
+/* Fully-Responsive Mobile Adaptions */
+@media(max-width:960px){
+  .hero{padding-top:130px}
+  .hero-grid, .split{grid-template-columns:1fr;gap:40px;text-align:center}
+  .hero h1{font-size:2.6rem}
+  .split div:first-child {order: 2} /* Orders imagery fluidly below titles on mobile viewports */
+  .section{padding:70px 0}
+  .section h2{font-size:2rem}
 }
 </style>
 </head>
 <body>
 
-<div id="loader"><img src="images/eden-logo.png"></div>
+<div id="loader"><img src="images/eden-logo.png" alt="EDEN Loader"></div>
 
-<img src="images/leaf-left.png" class="leafL">
-<img src="images/leaf-right.png" class="leafR">
-<img src="images/tree.png" class="tree">
+<img src="images/leaf-left.png" class="leafL" alt="">
+<img src="images/leaf-right.png" class="leafR" alt="">
+<img src="images/tree.png" class="tree" alt="">
 
 <nav>
-<div class="container nav">
-<img src="images/eden-logo.png" class="logo">
-<a href="#join" class="btn">Join EDEN</a>
-</div>
+  <div class="container nav">
+    <img src="images/eden-logo.png" class="logo" alt="EDEN Logo">
+    <a href="#join" class="btn">Join EDEN</a>
+  </div>
 </nav>
 
-<section class="hero container">
-<div class="hero-grid">
-<div>
-<h1>Building The Future Of Content Creation</h1>
-<p>EDEN is a creator-first community built for ambitious content creators. Discover opportunities, access resources, connect with like-minded creators and position yourself for future brand partnerships.</p>
-<a href="#join" class="btn">Join The First 500 Creators</a>
-</div>
-<div>
-<img src="images/hero.jpg">
-</div>
-</div>
-</section>
+<main class="container">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Building The Future Of Content Creation</h1>
+        <p>EDEN is a creator-first community built for ambitious content creators. Discover opportunities, access resources, connect with like-minded creators, and position yourself for future brand partnerships.</p>
+        <a href="#join" class="btn">Join The First 500 Creators</a>
+      </div>
+      <div>
+        <img src="images/hero.jpg" alt="EDEN Community Workspace">
+      </div>
+    </div>
+  </section>
 
-<section class="section">
-<div class="container center">
-<h2>Why EDEN Exists</h2>
-<p>Many creators grow alone. Opportunities are scattered, resources are difficult to find and meaningful communities are rare. EDEN brings creators together in one ecosystem designed for long-term growth.</p>
-</div>
-</section>
+  <section class="section center">
+    <h2>Why EDEN Exists</h2>
+    <p>Many creators grow alone. Opportunities are scattered, resources are difficult to find, and meaningful communities are rare. EDEN brings creators together in one ecosystem designed for long-term growth.</p>
+  </section>
 
-<section class="section">
-<div class="container">
-<h2 class="center">Meet The Community</h2><br>
-<div class="gallery">
-<img src="images/creator1.jpg">
-<img src="images/community.jpg">
-<img src="images/community2.jpg">
-</div>
-</div>
-</section>
+  <section class="section">
+    <div class="center">
+      <h2>Meet The Community</h2>
+      <p>Connect and scale alongside talent that values collaborative impact.</p>
+    </div>
+    <div class="gallery">
+      <img src="images/creator1.jpg" alt="Creator Portrait">
+      <img src="images/community.jpg" alt="Creators gathering">
+      <img src="images/community2.jpg" alt="Collaborative discussion">
+    </div>
+  </section>
 
-<section class="section">
-<div class="container">
-<h2 class="center">What You Get Inside EDEN</h2><br>
-<div class="cards">
-<div class="card"><h3>Brand Opportunities</h3><p>Get positioned for future campaigns and partnerships.</p></div>
-<div class="card"><h3>Creator Resources</h3><p>Tools, systems and resources to improve your workflow.</p></div>
-<div class="card"><h3>Community Access</h3><p>Connect with creators across multiple niches.</p></div>
-<div class="card"><h3>Growth Support</h3><p>Learn strategies that help creators grow sustainably.</p></div>
-</div>
-</div>
-</section>
+  <section class="section">
+    <div class="center">
+      <h2>What You Get Inside EDEN</h2>
+      <p>Everything required to transition from an isolated publisher to an enterprise agency engine.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Brand Opportunities</h3><p>Get positioned for future strategic campaigns and corporate sponsorships.</p></div>
+      <div class="card"><h3>Creator Resources</h3><p>Get robust tools, automated templates, and optimized workflow operational files.</p></div>
+      <div class="card"><h3>Community Access</h3><p>Cross-network, share insights, and connect with high-level creators across multiple global niches.</p></div>
+      <div class="card"><h3>Growth Support</h3><p>Learn verified tactical data models to maximize and grow your personal channels sustainably.</p></div>
+    </div>
+  </section>
 
-<section class="section">
-<div class="container split">
-<div><img src="images/workspace1.jpg"></div>
-<div>
-<h2>Work Smarter</h2>
-<p>Access workflows, systems and resources designed to help creators produce better content and operate more efficiently.</p>
-</div>
-</div>
-</section>
+  <section class="section split">
+    <div><img src="images/workspace1.jpg" alt="Production Desk Space"></div>
+    <div>
+      <h2>Work Smarter</h2>
+      <p>Access workflows, system operations, and documentation blueprints intended to help multi-hyphenate creator operations build content efficiently.</p>
+    </div>
+  </section>
 
-<section class="section">
-<div class="container split">
-<div>
-<h2>Tools & Opportunities</h2>
-<p>Discover useful platforms, creator resources and opportunities that help unlock your next stage of growth.</p>
-</div>
-<div><img src="images/tools.jpg"></div>
-</div>
-</section>
+  <section class="section split">
+    <div>
+      <h2>Tools & Opportunities</h2>
+      <p>Discover useful developer toolchains, design resource repositories, and emerging partner requests tailored to help fast-track your next development phase.</p>
+    </div>
+    <div><img src="images/tools.jpg" alt="Creator Interface Tools"></div>
+  </section>
 
-<section class="section">
-<div class="container split">
-<div><img src="images/workspace2.jpg"></div>
-<div>
-<h2>The EDEN Mission</h2>
-<p>Our mission is simple: build an environment where creators can thrive together through community, support, opportunities and meaningful connections.</p>
-</div>
-</div>
-</section>
+  <section class="section split">
+    <div><img src="images/workspace2.jpg" alt="Creative Production Environment"></div>
+    <div>
+      <h2>The EDEN Mission</h2>
+      <p>Our mission is straightforward: orchestrate an expansive ecosystem where modern builders achieve creative sustainability via infrastructure, shared knowledge, and impactful networking tiers.</p>
+    </div>
+  </section>
 
-<section class="section center">
-<div class="container">
-<h2>Only 500 Founding Creator Spots Available</h2>
-<p>We're carefully building the first generation of EDEN creators.</p>
-</div>
-</section>
+  <section class="section center">
+    <h2>Only 500 Founding Creator Spots Available</h2>
+    <p>We are closely curating the inaugural foundation group of EDEN community leaders.</p>
+  </section>
 
-<section id="join" class="section">
-<div class="container">
-<div class="join">
-<h2>Request Access</h2>
-<p>Join the first 500 founding creators. Enter your details below.</p><br>
-<div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:100%">
-  <input id="joinName"  type="text"  placeholder="Your name" style="width:min(500px,90%);padding:16px;border:1px solid #ddd;border-radius:14px;font-size:15px;font-family:Arial,sans-serif">
-  <input id="joinEmail" type="email" placeholder="Your email address" style="width:min(500px,90%);padding:16px;border:1px solid #ddd;border-radius:14px;font-size:15px;font-family:Arial,sans-serif">
-  <button id="joinBtn" onclick="joinEden()" style="padding:16px 32px;background:var(--green);color:#fff;border:none;border-radius:14px;font-weight:bold;cursor:pointer;font-size:15px;width:min(500px,90%);font-family:Arial,sans-serif">Request Access</button>
-</div>
-<p id="msg" style="margin-top:18px;font-size:14px"></p>
-</div>
-</div>
-</section>
+  <section id="join" class="section">
+    <div class="join">
+      <h2>Request Access</h2>
+      <p>Secure your slot within our first 500 founding cohort members.</p>
+      
+      <!-- Replaced structural div with standard semantic Form element for native key submits -->
+      <form class="join-form" id="edenForm" onsubmit="event.preventDefault(); joinEden();">
+        <input id="joinName" type="text" placeholder="Your name" required>
+        <input id="joinEmail" type="email" placeholder="Your email address" required>
+        <button id="joinBtn" type="submit">Request Access</button>
+      </form>
+      <div class="msg-box"><p id="msg" style="font-size:14px; font-weight:600;"></p></div>
+    </div>
+  </section>
+</main>
 
 <footer>
-<img src="images/eden-logo.png" style="height:60px;margin:0 auto 15px;">
-<p>Building The Future Of Content Creation</p>
+  <img src="images/eden-logo.png" alt="EDEN Logo Graphic">
+  <p>&copy; 2026 EDEN. Building The Future Of Content Creation</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -181,8 +217,10 @@ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
 window.onload = function () {
   setTimeout(() => {
-    document.getElementById('loader').style.display = 'none';
-  }, 1800);
+    const loader = document.getElementById('loader');
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 400);
+  }, 1200);
 };
 
 function joinEden() {
@@ -195,19 +233,19 @@ function joinEden() {
   const email = emailInput.value.trim();
 
   if (!name) {
-    msgEl.style.color = '#e53e3e';
+    msgEl.style.color = '#ef4444';
     msgEl.innerHTML = 'Please enter your name.';
     return;
   }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    msgEl.style.color = '#e53e3e';
+    msgEl.style.color = '#ef4444';
     msgEl.innerHTML = 'Please enter a valid email address.';
     return;
   }
 
   btn.disabled = true;
   btn.textContent = 'Sending…';
-  msgEl.style.color = '#6b7280';
+  msgEl.style.color = '#64748b';
   msgEl.innerHTML = 'Submitting your request…';
 
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
@@ -217,7 +255,7 @@ function joinEden() {
     reply_to:   'sportsguycollabs@gmail.com',
   })
   .then(() => {
-    msgEl.style.color = '#22c55e';
+    msgEl.style.color = '#10b981';
     msgEl.innerHTML   = '🎉 Welcome to EDEN, ' + name + '! Check your inbox — a welcome message is on its way.';
     nameInput.value   = '';
     emailInput.value  = '';
@@ -226,7 +264,7 @@ function joinEden() {
   })
   .catch((err) => {
     console.error('EmailJS error:', err);
-    msgEl.style.color = '#e53e3e';
+    msgEl.style.color = '#ef4444';
     msgEl.innerHTML   = 'Something went wrong. Please try again or email us directly.';
     btn.textContent   = 'Request Access';
     btn.disabled      = false;
